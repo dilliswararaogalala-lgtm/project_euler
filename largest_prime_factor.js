@@ -2,20 +2,21 @@
 
 // What is the largest prime factor of the number 600851475143?
 
-const getPrimeFactors = (number, primeNumber = 2) => {
-  let changableInput = number;
+const getPrimeFactors = (number, factor = 2) => {
+  let n = number;
   const primeFactors = [];
-  while (changableInput > 1) {
-    if (changableInput % primeNumber === 0) {
-      primeFactors.push(primeNumber);
-      changableInput /= primeNumber;
+  while (n > 1) {
+    if (n % factor === 0) {
+      primeFactors.push(factor);
+      n /= factor;
     } else {
-      primeNumber++;
+      factor++;
     }
   }
   return primeFactors;
 };
-const largestPrimeFactor = (largest, currentPrimeFactor) => {
-  return largest < currentPrimeFactor ? currentPrimeFactor : largest;
-}
-console.log(getPrimeFactors(600851475143).reduce(largestPrimeFactor))
+
+const primeFactors = getPrimeFactors(600851475143);
+const largest = primeFactors.reduce((a, b) => a < b ? b : a)
+
+console.log(largest);
