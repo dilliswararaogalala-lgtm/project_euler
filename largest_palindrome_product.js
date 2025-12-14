@@ -7,24 +7,28 @@ const threeDigitNumbers = Array.from(
   (_, i) => i + 100,
 );
 
-const products = threeDigitNumbers.flatMap((x) => {
-  const products = [];
-  for (let i = 0; i < threeDigitNumbers.length; i++) {
-    products.push(x * threeDigitNumbers[i]);
-  }
-  return products;
-});
+const arrayIterator = threeDigitNumbers[Symbol.iterator]();
+
+const iterator = Iterator.from(arrayIterator);
 
 const isPalindrome = (x) => {
   const numberAsStr = String(x);
-  const reversedNumber = numberAsStr.split('').reverse().join('');
+  const reversedNumber = numberAsStr.split("").reverse().join("");
   return numberAsStr === reversedNumber;
 };
 
-const allPalindromes = products.filter(isPalindrome);
+const findLargestPalindrome = (largest, current) =>
+  current > largest ? current : largest;
 
-const findLargestPalindrome = (largest, current) => current > largest ? current : largest;
-
-const largestPalindrome = allPalindromes.reduce(findLargestPalindrome);
+const largestPalindrome = iterator
+  .flatMap((x) => {
+    const products = [];
+    for (let i = 0; i < threeDigitNumbers.length; i++) {
+      products.push(x * threeDigitNumbers[i]);
+    }
+    return products;
+  })
+  .filter(isPalindrome)
+  .reduce(findLargestPalindrome)
 
 console.log(largestPalindrome);
