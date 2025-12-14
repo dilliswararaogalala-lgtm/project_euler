@@ -3,13 +3,13 @@
 
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-const terms = [1, 2];
+const fibonacii = [1, 1];
 let futureTerm = 0;
 let i = 1;
 
 while(futureTerm < 4000000){
-  futureTerm = terms[i - 1] + terms[i];
-  terms.push(futureTerm);
+  futureTerm = fibonacii[i - 1] + fibonacii[i];
+  fibonacii.push(futureTerm);
   i++;
 }
 
@@ -21,7 +21,7 @@ const addTheTerms = (sum, currentTerm) => {
 const isEven = (x) => x % 2 === 0;
 
 console.log(
-  terms
+  fibonacii
     .filter(isEven)
     .reduce(addTheTerms),
 );
