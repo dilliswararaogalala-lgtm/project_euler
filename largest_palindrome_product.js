@@ -29,6 +29,6 @@ const largestPalindrome = iterator
     return products;
   })
   .filter(isPalindrome)
-  .reduce(findLargestPalindrome)
+  .reduce(findLargestPalindrome);
 
 console.log(largestPalindrome);
