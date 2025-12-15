@@ -5,15 +5,15 @@ const numberInArray = inputNumber.split("").map((x) => parseInt(x));
 
 const productOfAll = numberInArray.map((_, index, numbers) => {
   let product = 1;
-  let i = 0;
-  while(i < 13){
-    if(numbers[i + index] !== undefined) product *= numbers[i + index];
-    i++;
+  for (let i = 0; i < 13; i++) {
+    if (numbers[i + index] !== undefined) product *= numbers[i + index];
   }
 
-  return product
-})
+  return product;
+});
 
-const largestProduct = productOfAll.reduce((largest, current) => largest < current ? current : largest);
+const largestProduct = productOfAll.reduce((largest, current) =>
+  largest < current ? current : largest
+);
 
 console.log(largestProduct);
